@@ -4,6 +4,7 @@ import (
 	"log"
 
 	"github.com/phzeng0726/go-server-template/internal/domain"
+	"github.com/redis/go-redis/v9"
 
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
@@ -25,4 +26,15 @@ func SyncDatabase(conn *gorm.DB) {
 	if err != nil {
 		log.Fatalf("Failed to migrate User: %v", err)
 	}
+}
+
+func ConnectRedis() *redis.Client {
+	rdb := redis.NewClient(&redis.Options{
+		Addr:     "localhost:6379",
+		Password: "", // no password set
+		DB:       0,  // use default DB
+	})
+
+	log.Println("redis connected")
+	return rdb
 }

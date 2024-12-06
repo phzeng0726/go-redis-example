@@ -4,6 +4,7 @@ import (
 	"context"
 
 	"github.com/phzeng0726/go-server-template/internal/domain"
+	"github.com/redis/go-redis/v9"
 
 	"gorm.io/gorm"
 )
@@ -17,8 +18,8 @@ type Repositories struct {
 	Users Users
 }
 
-func NewRepositories(db *gorm.DB) *Repositories {
+func NewRepositories(db *gorm.DB, rdb *redis.Client) *Repositories {
 	return &Repositories{
-		Users: NewUsersRepo(db),
+		Users: NewUsersRepo(db, rdb),
 	}
 }

@@ -64,6 +64,8 @@ func init() {
 func main() {
 	// Database
 	conn := database.Connect()
+	connR := database.ConnectRedis()
+
 	database.SyncDatabase(conn)
 
 	// Others
@@ -75,7 +77,7 @@ func main() {
 	}
 
 	// 3-Layers
-	repos = repository.NewRepositories(conn)
+	repos = repository.NewRepositories(conn, connR)
 	deps := initServiceDeps(repos, *config.Env)
 	services = service.NewServices(deps)
 	handlers = delivery.NewHandler(services, deps.TokenManager, loggerManager)

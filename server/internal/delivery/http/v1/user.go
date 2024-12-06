@@ -13,10 +13,8 @@ func (h *Handler) initUserRoutes(api *gin.RouterGroup) {
 	{
 		userApi.POST("", h.createUser)
 
-		auth := api.Group("", userIdentityMiddleware(h))
-		{
-			auth.GET("", h.getUserByEmail)
-		}
+		userApi.GET("", h.getUserByEmail)
+
 	}
 }
 
