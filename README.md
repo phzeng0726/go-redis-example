@@ -1,4 +1,6 @@
-# go-restful-server-template
+# go-redis-example
+
+Based on the RESTful API server project structure.
 
 ## Dependencies
 
@@ -6,6 +8,7 @@
 <!-- Database -->
 gorm.io/gorm
 gorm.io/driver/sqlite
+github.com/redis/go-redis/v9
 
 <!-- API -->
 github.com/gin-gonic/gin
